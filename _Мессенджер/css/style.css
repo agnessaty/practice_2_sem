@@ -1,1 +1,116 @@
-/* Авторизация */
+/* РЕГИСТРАЦИЯ */
+body {
+    background-color: rgb(230, 211, 243);
+}
+.body-reg {
+    width: 600px;
+    height: 700px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 40px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.body-reg h1 {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-top: 30px;
+}
+.body-reg input {
+    width: 570px;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    border-radius: 20px;
+    border: 0;
+    background-color: rgb(222, 230, 248);
+    
+}
+.body-reg label {
+    margin-left: 20px;
+}
+.body-reg .register {
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    margin-left: 170px;
+    margin-top: 10px;
+    border: 0;
+    background-color: rgb(234, 214, 248);
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    &:hover {
+        background-color: rgb(223, 196, 241);
+    }
+}
+.body-reg .authorize {
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    padding: 15px 50px 30px 250px;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover {
+        color: rgb(175, 116, 218);
+    }
+}
+/* КОНЕЦ РЕГИСТРАЦИИ */
+
+/* АВТОРИЗАЦИЯ */
+.body-auth {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    border-radius: 40px;
+    background-color: white;
+    margin-top: 140px;
+}
+.body-auth svg {
+    width: 80px;
+    margin: 10px 300px 0 250px;
+}
+.body-auth p {
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.body-auth input {
+    width: 570px;
+    height: 70px;
+    margin-bottom: 20px;
+    margin-left: 12px;
+    border-radius: 20px;
+    border: 0;
+    background-color: rgb(222, 230, 248);
+}
+.body-auth label {
+    margin-left: 35px;
+}
+.body-auth .auth {
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    margin-left: 170px;
+    margin-top: 10px;
+    border: 0;
+    background-color: rgb(234, 214, 248);
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    &:hover {
+        background-color: rgb(223, 196, 241);
+    }
+}
+.body-auth .reg {
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    padding: 25px 50px 30px 240px;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover {
+        color: rgb(175, 116, 218);
+    }
+}
+/* КОНЕЦ АВТОРИЗАЦИИ */
