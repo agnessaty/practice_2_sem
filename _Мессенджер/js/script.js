@@ -1,5 +1,6 @@
 const host = `http://api-messenger.web-srv.local`;
 const content = document.querySelector('.content');
+const token = "";
 
 
 function _post (params, callback) {
@@ -16,7 +17,7 @@ function _post (params, callback) {
 function _get (params, callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', params.url);
-    xhr.send(params.data);
+    xhr.send();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             callback(xhr.responseText)
@@ -24,28 +25,31 @@ function _get (params, callback) {
     }
 }
 
-_post({url: '/modules/registration.html'}, function(response) {
+_post({url: '/modules/chats.html'}, function(response) {
     content.innerHTML = response;
     LoadPageChats()
 })
 
 function LoadPageChats() {
     document.querySelector('.register').addEventListener('click', function () {
-        let fdata = new FormData();
-        fdata.append('fam', document.querySelector('input[name="fam"]').value)
-        fdata.append('name', document.querySelector('input[name="name"]').value)
-        fdata.append('otch', document.querySelector('input[name="otch"]').value)
-        fdata.append('email', document.querySelector('input[name="email"]').value)
-        fdata.append('pass', document.querySelector('input[name="pass"]').value)
-
-        _post({url: `${host}/user`, data: fdata}, function(response){
-            response = JSON.parse(response);
+        let edata = new FormData();
+        edata.append('fam', document.querySelector('input[name="fam"]').value)
+        edata.append('name', document.querySelector('input[name="name"]').value)
+        edata.append('otch', document.querySelector('input[name="otch"]').value)
+        edata.append('email', document.querySelector('input[name="email"]').value)
+        edata.append('pass', document.querySelector('input[name="pass"]').value)
+        
+        _post({url: `${host}/user/`, data: edata}, function(response) {
+            response = JSON.parse(response)
             if (response.success) {
+                token = response.token
+                console.log(token)
                 OnLoadPageChats()
-            }
-            else {
+            } else {
                 alert('Login Failed')
             }
+            
+
         })
     })
 }

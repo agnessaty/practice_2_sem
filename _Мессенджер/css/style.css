@@ -1,6 +1,8 @@
 /* РЕГИСТРАЦИЯ */
 body {
-    background-color: rgb(230, 211, 243);
+    background-color: rgb(244, 232, 252);
+    margin: 0;
+    padding: 0;
 }
 .body-reg {
     width: 600px;
@@ -42,17 +44,6 @@ body {
     text-transform: uppercase;
     &:hover {
         background-color: rgb(223, 196, 241);
-    }
-}
-.body-reg .authorize {
-    background: none;
-    border: 0;
-    text-decoration: underline;
-    padding: 15px 50px 30px 250px;
-    font-size: 15px;
-    cursor: pointer;
-    &:hover {
-        color: rgb(175, 116, 218);
     }
 }
 /* КОНЕЦ РЕГИСТРАЦИИ */
@@ -114,3 +105,27 @@ body {
     }
 }
 /* КОНЕЦ АВТОРИЗАЦИИ */
+
+/* ЧАТЫ */
+.chats .header {
+    width: 450px;
+    height: 50px;
+    background-color: rgb(221, 221, 221);
+    display: flex;
+}
+.chats svg {
+    margin-left: 20px;
+    margin-top: 2px;
+}
+.chats input {
+    background-image: url(https://img.icons8.com/?size=100&id=132&format=png&color=000000);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    width: 350px;
+    height: 30px;
+    background-position: 97%;
+    border-radius: 30px;
+    margin-left: 20px;
+    margin-top: 5px;
+    border: 1px solid rgb(136, 135, 135);
+}
