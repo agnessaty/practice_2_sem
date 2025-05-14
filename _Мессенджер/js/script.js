@@ -6,7 +6,7 @@ const token = "";
 function _post (params, callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', params.url);
-    xhr.send(params.data);
+    xhr.send();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             callback(xhr.responseText)
@@ -28,6 +28,7 @@ function _get (params, callback) {
 _post({url: '/modules/chats.html'}, function(response) {
     content.innerHTML = response;
     LoadPageChats()
+    LoadPageAuth()
 })
 
 function LoadPageChats() {
@@ -39,18 +40,20 @@ function LoadPageChats() {
         edata.append('email', document.querySelector('input[name="email"]').value)
         edata.append('pass', document.querySelector('input[name="pass"]').value)
         
-        _post({url: `${host}/user/`, data: edata}, function(response) {
-            response = JSON.parse(response)
-            if (response.success) {
-                token = response.token
-                console.log(token)
-                OnLoadPageChats()
-            } else {
-                alert('Login Failed')
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', `${host}/user/`);
+        xhr.send(edata);
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    OnLoadPageChats()
+                } if (xhr.status == 422) {
+                    let response = JSON.parse(xhr.responseText)
+                    alert(response.message)
+                }
             }
-            
-
-        })
+                
+        }
     })
 }
 
@@ -58,4 +61,38 @@ function OnLoadPageChats() {
     _post({url: '/modules/chats.html'}, function(response) {
     content.innerHTML = response;
 })
+}
+
+function LoadPageAuth() {
+    document.querySelector('.authorize').addEventListener('click', function() {
+        _post({url: '/modules/auth.html'}, function(response) {
+        content.innerHTML = response;
+        LoadPageChatAuth()
+    })
+}
+)}
+
+function LoadPageChatAuth() {
+    document.querySelector('.auth').addEventListener('click', function () {
+        let fdata = new FormData();
+        fdata.append('email', document.querySelector('input[name="email"]').value)
+        fdata.append('pass', document.querySelector('input[name="pass"]').value)
+        
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', `${host}/auth/`);
+        xhr.send(fdata);
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                console.log(xhr.responseText)
+                if (xhr.status == 200) {
+                    OnLoadPageChats()
+                } if (xhr.status == 401) {
+                    let response = JSON.parse(xhr.responseText)
+                    alert(response.message)
+                }
+            }
+                
+            
+        }
+    })
 }
