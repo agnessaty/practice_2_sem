@@ -1,6 +1,6 @@
 /* РЕГИСТРАЦИЯ */
 body {
-    background-color: rgb(244, 232, 252);
+    background-color: rgb(154, 161, 187);
     margin: 0;
     padding: 0;
 }
@@ -11,6 +11,7 @@ body {
     border-radius: 40px;
     margin: 0 auto;
     margin-top: 50px;
+    
 }
 .body-reg h1 {
     text-align: center;
@@ -48,11 +49,9 @@ body {
 }
 
 .body-reg .authorize {
-    background: none;
-    border: 0;
     text-decoration: underline;
-    padding: 15px 50px 30px 240px;
     font-size: 15px;
+    margin-left: 260px;
     cursor: pointer;
     &:hover {
         color: rgb(175, 116, 218);
@@ -67,7 +66,7 @@ body {
     margin: 0 auto;
     border-radius: 40px;
     background-color: white;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 .body-auth svg {
     width: 80px;
@@ -75,14 +74,14 @@ body {
 }
 .body-auth p {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .body-auth input {
     width: 570px;
     height: 70px;
     margin-bottom: 20px;
-    margin-left: 12px;
+    margin-left: 15px;
     border-radius: 20px;
     border: 0;
     background-color: rgb(222, 230, 248);
@@ -106,10 +105,9 @@ body {
     }
 }
 .body-auth .reg {
-    background: none;
-    border: 0;
     text-decoration: underline;
-    padding: 25px 50px 30px 240px;
+    margin-left: 253px;
+    margin-top: 23px;
     font-size: 15px;
     cursor: pointer;
     &:hover {
@@ -123,11 +121,29 @@ body {
     display: flex;
 }
 .menu {
-    width: 200px;
+    width: 220px;
     height: 100vh;
     background-color: rgb(30, 41, 87);
 }
 .menu .messages-menu {
+    height: 55px;
+    border-bottom: 2px solid rgb(137, 158, 243);
+    display: flex;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(16, 25, 59);
+    }
+}
+.menu .exit {
+    height: 55px;
+    border-bottom: 2px solid rgb(137, 158, 243);
+    display: flex;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(16, 25, 59);
+    }
+}
+.menu .delete {
     height: 55px;
     border-bottom: 2px solid rgb(137, 158, 243);
     display: flex;
@@ -148,28 +164,7 @@ body {
     margin-left: 8px;
     margin-top: 13px;
 }
-.menu .panel {
-    display: none;
-    overflow: hidden;
-}
-.acc {
-    height: 55px;
-    border-bottom: 2px solid rgb(137, 158, 243);
-    display: flex;
-    cursor: pointer;
-    &:hover {
-        background-color: rgb(16, 25, 59);
-    }
-}
-.panel-menu {
-    height: 55px;
-    border-bottom: 2px solid rgb(137, 158, 243);
-    display: flex;
-    cursor: pointer;
-    &:hover {
-        background-color: rgb(16, 25, 59);
-    }
-}
+/* Список чатов */
 .chats {
     background-color: rgb(204, 233, 241);
     width: 400px;
@@ -180,8 +175,8 @@ body {
     
 }
 .chats .header {
-    background-color: aquamarine;
-    height: 100px;
+    height: 113px;
+    border-bottom: 1px solid rgb(157, 160, 170);
 }
 .header h2 {
     margin: 0;
@@ -196,6 +191,7 @@ body {
     margin-right: 30px;
     background-color: rgb(69, 84, 143);
     color: aliceblue;
+    box-shadow: 1px 3px 7px rgb(69, 84, 143);
     text-transform: uppercase;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 700;
@@ -206,4 +202,21 @@ body {
 }
 .chats input {
     margin-top: 15px;
+    width: 280px;
+    height: 23px;
+    margin-left: 10px;
+    border: solid 1px rgb(69, 84, 143);
+    background-image: url(https://img.icons8.com/?size=100&id=132&format=png&color=000000);
+    background-repeat: no-repeat;
+    background-size: 22px;
+    background-position: 98%;
+    &:focus {
+        outline: rgb(69, 84, 143);
+        border-color: rgb(185, 159, 245);
+    }
+}
+
+/* Окно чата */
+.chat {
+    width: 100%;
 }

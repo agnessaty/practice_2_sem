@@ -1,6 +1,6 @@
 const host = `http://api-messenger.web-srv.local`;
 const content = document.querySelector('.content');
-const token = "";
+var token = "";
 
 
 function _post (params, callback) {
@@ -25,7 +25,7 @@ function _get (params, callback) {
     }
 }
 
-_post({url: '/modules/chats.html'}, function(response) {
+_post({url: '/modules/registration.html'}, function(response) {
     content.innerHTML = response;
     LoadPageChats()
     LoadPageAuth()
@@ -68,6 +68,7 @@ function LoadPageAuth() {
         _post({url: '/modules/auth.html'}, function(response) {
         content.innerHTML = response;
         LoadPageChatAuth()
+        
     })
 }
 )}
@@ -83,7 +84,6 @@ function LoadPageChatAuth() {
         xhr.send(fdata);
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4) {
-                console.log(xhr.responseText)
                 if (xhr.status == 200) {
                     OnLoadPageChats()
                 } if (xhr.status == 401) {
