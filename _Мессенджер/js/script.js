@@ -25,10 +25,21 @@ function _get (params, callback) {
     }
 }
 
-_post({url: '/modules/chats.html'}, function(response) {
+function _delete (params, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', params.url);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            callback(xhr.responseText)
+        }
+    }
+}
+
+_post({url: '/modules/registration.html'}, function(response) {
     content.innerHTML = response;
     LoadPageChats()
-    LoadPageAuth()
+    OnLoadPageAuth()
 })
 
 function LoadPageChats() {
@@ -51,8 +62,7 @@ function LoadPageChats() {
                     let response = JSON.parse(xhr.responseText)
                     alert(response.message)
                 }
-            }
-                
+            } 
         }
     })
 }
@@ -60,39 +70,68 @@ function LoadPageChats() {
 function OnLoadPageChats() {
     _post({url: '/modules/chats.html'}, function(response) {
     content.innerHTML = response;
+    OnClickLogout()
 })
 }
 
+function OnLoadPageAuth() {
+    document.querySelector('.authorize').addEventListener('click', LoadPageAuth
+)}
+
 function LoadPageAuth() {
-    document.querySelector('.authorize').addEventListener('click', function() {
-        _post({url: '/modules/auth.html'}, function(response) {
+    _post({url: '/modules/auth.html'}, function(response) {
         content.innerHTML = response;
         LoadPageChatAuth()
-        
+        LoadPageReg()
     })
 }
-)}
 
 function LoadPageChatAuth() {
     document.querySelector('.auth').addEventListener('click', function () {
-        let fdata = new FormData();
+        let fdata = new FormData()
         fdata.append('email', document.querySelector('input[name="email"]').value)
         fdata.append('pass', document.querySelector('input[name="pass"]').value)
-        
+
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', `${host}/auth/`);
-        xhr.send(fdata);
+        xhr.open('POST', `${host}/auth/`)
+        xhr.send(fdata)
         xhr.onreadystatechange = function() {
-            if(xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    OnLoadPageChats()
-                } if (xhr.status == 401) {
-                    let response = JSON.parse(xhr.responseText)
-                    alert(response.message)
-                }
+            if(xhr.status == 200) {
+                OnLoadPageChats()
+            } if (xhr.status == 401) {
+                let response = JSON.parse(xhr.responseText)
+                alert(response.message)
             }
-                
-            
         }
     })
+}
+
+
+function LoadPageReg() {
+    document.querySelector('.reg').addEventListener('click', function() {
+        _post({url: '/modules/registration.html'}, function(response) {
+            content.innerHTML = response;
+            LoadPageChats()
+            LoadPageAuth()
+        })
+    })
+}
+
+function OnClickLogout() {
+    document.querySelector('.exit').addEventListener('click', function() {
+        let fdata = new FormData();
+        fdata.append('token', token)
+        let xhr = new XMLHttpRequest();
+        xhr.open('DELETE', `${host}/auth/`)
+        xhr.send(fdata)
+        xhr.onreadystatechange = function() {
+            if(xhr.status == 200) {
+                OnLoadPageChats()
+            } if (xhr.status == 401) {
+                let response = JSON.parse(xhr.responseText)
+                alert(response.message)
+            }
+        }
+})
+    
 }
