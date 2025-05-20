@@ -36,11 +36,15 @@ function _delete (params, callback) {
     }
 }
 
-_post({url: '/modules/registration.html'}, function(response) {
+LoadPagereg()
+function LoadPagereg() {
+    _post({url: '/modules/registration.html'}, function(response) {
     content.innerHTML = response;
     LoadPageChats()
     OnLoadPageAuth()
 })
+}
+
 
 function LoadPageChats() {
     document.querySelector('.register').addEventListener('click', function () {
@@ -82,7 +86,7 @@ function LoadPageAuth() {
     _post({url: '/modules/auth.html'}, function(response) {
         content.innerHTML = response;
         LoadPageChatAuth()
-        LoadPageReg()
+        LoadPageRegAuth()
     })
 }
 
@@ -107,14 +111,8 @@ function LoadPageChatAuth() {
 }
 
 
-function LoadPageReg() {
-    document.querySelector('.reg').addEventListener('click', function() {
-        _post({url: '/modules/registration.html'}, function(response) {
-            content.innerHTML = response;
-            LoadPageChats()
-            LoadPageAuth()
-        })
-    })
+function LoadPageRegAuth() {
+    document.querySelector('.reg').addEventListener('click', LoadPagereg())
 }
 
 function OnClickLogout() {
@@ -125,13 +123,10 @@ function OnClickLogout() {
         xhr.open('DELETE', `${host}/auth/`)
         xhr.send(fdata)
         xhr.onreadystatechange = function() {
-            if(xhr.status == 200) {
-                OnLoadPageChats()
-            } if (xhr.status == 401) {
-                let response = JSON.parse(xhr.responseText)
-                alert(response.message)
+            if (xhr.readyState == 4) {
+                LoadPageAuth()
             }
-        }
-})
-    
+            }
+        })
 }
+    
