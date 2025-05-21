@@ -37,14 +37,13 @@ function _delete (params, callback) {
 }
 
 LoadPagereg()
-function LoadPagereg() {
+function LoadPagereg(){
     _post({url: '/modules/registration.html'}, function(response) {
     content.innerHTML = response;
     LoadPageChats()
     OnLoadPageAuth()
 })
 }
-
 
 function LoadPageChats() {
     document.querySelector('.register').addEventListener('click', function () {
@@ -71,24 +70,17 @@ function LoadPageChats() {
     })
 }
 
-function OnLoadPageChats() {
-    _post({url: '/modules/chats.html'}, function(response) {
-    content.innerHTML = response;
-    OnClickLogout()
-})
-}
 
 function OnLoadPageAuth() {
-    document.querySelector('.authorize').addEventListener('click', LoadPageAuth
-)}
-
-function LoadPageAuth() {
-    _post({url: '/modules/auth.html'}, function(response) {
+    document.querySelector('.authorize').addEventListener('click', function PageAuth() {
+        _post({url: '/modules/auth.html'}, function(response) {
         content.innerHTML = response;
         LoadPageChatAuth()
         LoadPageRegAuth()
     })
-}
+    }
+)}
+
 
 function LoadPageChatAuth() {
     document.querySelector('.auth').addEventListener('click', function () {
@@ -112,7 +104,7 @@ function LoadPageChatAuth() {
 
 
 function LoadPageRegAuth() {
-    document.querySelector('.reg').addEventListener('click', LoadPagereg())
+    document.querySelector('.reg').addEventListener('click', LoadPagereg)
 }
 
 function OnClickLogout() {
@@ -124,9 +116,17 @@ function OnClickLogout() {
         xhr.send(fdata)
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
-                LoadPageAuth()
+                PageAuth()
             }
             }
         })
 }
     
+
+
+function OnLoadPageChats() {
+    _post({url: '/modules/chats.html'}, function(response) {
+    content.innerHTML = response;
+    OnClickLogout()
+})
+}
